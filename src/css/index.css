@@ -1,0 +1,29 @@
+#head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    background-color: #dcdcdc
+}
+
+#tab-container {
+    height: 40px;
+    line-height: 40px;
+    flex-grow: 1
+}
+#tab-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#tab-list .item {
+    padding: 0 10px;
+    border-right: 1px solid black;
+}
+
+#tab-list .item span {
+    height: 40px;
+    line-height: 40px;
+}
+

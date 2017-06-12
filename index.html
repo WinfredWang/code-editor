@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="src/css/index.css" />
+    <!--<script src="src/vue.min.js"></script>-->
+    <script src="dist/index.js"></script>
+
+</head>
+
+<body>
+
+    <div id="container">
+        <!--<div id="head">
+            <div id="tab-container">
+                <div id="tab-list">
+                    <div class="item">
+                        <span>xxx</span>
+                        <span></span>
+                    </div>
+                    <div>
+                        <span>xxx</span>
+                        <span></span>
+                    </div>
+                    <div>
+                        <span>xxx</span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <div style="width:200px;border-left:1px solid red">aa</div>
+        </div>
+        <div>
+            <div id="container" style="width:1000px;height:800px">
+            </div>
+        </div>-->
+    </div>
+
+
+    <script>
+        window.onload = function () {
+            var s = document.createElement('script')
+            s.onload = function () {
+                require.config({
+                    paths: {
+                        'vs': './node_modules/monaco-editor/min/vs'
+                    },
+                    'vs/nls': {
+                        availableLanguages: {
+                            '*': 'zh-cn'
+                        }
+                    }
+                });
+
+                require(['vs/editor/editor.main'], function () {
+                    window.monaco = monaco
+                    let ev = document.createEvent('UIEvent')
+                    ev.initEvent('MonacoReady', false, false)
+                    document.dispatchEvent(ev)
+                })
+            }
+            s.src = "./node_modules/monaco-editor/min/vs/loader.js"
+            document.head.appendChild(s)
+        }
+    </script>
+   
+   
+</body>
+
+</html>
+
+<he
