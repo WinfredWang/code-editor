@@ -1,6 +1,6 @@
 import { Item } from './common';
 
-class TabDom {
+class TabAction {
 
     private items: Item[];
     private container: HTMLElement;
@@ -28,12 +28,28 @@ class TabDom {
         for (let i = 0; i < this.items.length; i++) {
             tabListDiv.appendChild(this.createTabItemDom(this.items[i]));
         }
+
+        this.createCodeDom();
+    }
+
+    public getCodeContainer(): HTMLElement {
+        return document.getElementById('code-editor');
+    }
+
+    private createCodeDom() {
+        let div = document.createElement('div');
+        div.id = 'code-editor';
+        div.style.width = '1000px';
+        this.container.appendChild(div);
     }
 
     private createTabItemDom(item: Item): HTMLElement {
         let tabDom = document.createElement('div');
         tabDom.classList.add('item');
-        tabDom.setAttribute('title', item.label);
+        if (item.active) {
+            tabDom.classList.add('active');
+        }
+        tabDom.setAttribute('title', item.path);
 
         let nameDom = document.createElement('span');
         nameDom.innerText = item.name;
@@ -41,6 +57,10 @@ class TabDom {
 
         return tabDom;
     }
+
+    private createActionDom() {
+        //
+    }
 }
 
-export { TabDom };
+export { TabAction };

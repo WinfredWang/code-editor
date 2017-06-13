@@ -1,7 +1,9 @@
 interface Item {
     name: string;
-    label: string;
-    value: string;
+    path: string;
+    language:string;
+    value?: string;
+    active?:boolean;
 }
 interface Option {
     id?: string;

@@ -4,7 +4,7 @@ const global = <any>window;
 
 global.yi = {
     init: () => {
-        global.yi.Editor = new Editor([{name:'xx.js', label:'xxxx', value:'xxx'}], {id:"container"})
+        global.yi.Editor = new Editor([{name:'xx.js', path:'/aa/xx.js', value:'xxx', language:'javascript'}], {id:"container"})
     }
 }
 

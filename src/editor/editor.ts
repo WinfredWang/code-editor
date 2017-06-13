@@ -1,11 +1,12 @@
 import { Item, Option } from './common';
-import { TabDom } from './tab-dom';
-
+import { CodeEditor } from './code-editor';
+import { TabAction } from './tab-action';
 
 class Editor {
     private items: Array<Item>;
     private container: HTMLElement;
-    private tabDom: TabDom;
+    private codeEditor: CodeEditor;
+    private tabAction: TabAction;
 
     constructor(items: Item[], option: Option) {
         this.items = items;
@@ -23,14 +24,8 @@ class Editor {
             throw new Error('no found document element');
         }
 
-        this.tabDom = new TabDom(this.items, this.container);
-    }
-
-    private init() {
-        var editor = monaco.editor.create(document.getElementById('container'), {
-            value: '<html><head></head>\n</html>',
-            language: 'xml'
-        });
+        this.tabAction = new TabAction(this.items, this.container);
+        this.codeEditor = new CodeEditor(this.items, this.tabAction);
     }
 }
 
