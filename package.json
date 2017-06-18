@@ -14,5 +14,8 @@
     "typescript": "^2.3.4",
     "vue": "^2.3.4",
     "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "express": "^4.15.3"
   }
 }

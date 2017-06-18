@@ -40,13 +40,32 @@ class CodeEditor {
     }
 
     openTabByItem(item: Item) {
+        // save current model state
+        let curModel = this.monaco.getModel();
+        if (curModel) {
+            let curItem = this.getItemByPath(curModel.uri.toString());
+            curItem && (curItem.viewState = this.monaco.saveViewState());
+        }
+
         let uri = monaco.Uri.parse(item.path);
         let model = monaco.editor.getModel(uri);
         if (!model) {
-            monaco.editor.createModel(item.value, item.language, uri);
-
+            model = monaco.editor.createModel(item.value, item.language, uri);
         }
         this.monaco.setModel(model);
+        if (item.viewState) {
+            this.monaco.restoreViewState(item.viewState);
+            this.monaco.focus();
+        }
+    }
+
+    getItemByPath(path:string):Item {
+        for (let item of this.items) {
+            if (path == item.path) {
+                return item;
+            }
+        }
+        return null;
     }
 }
 

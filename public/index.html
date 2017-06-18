@@ -45,7 +45,7 @@
             s.onload = function () {
                 require.config({
                     paths: {
-                        'vs': './node_modules/monaco-editor/min/vs'
+                        'vs': './src/monaco/min/vs'
                     },
                     'vs/nls': {
                         availableLanguages: {
@@ -61,7 +61,7 @@
                     document.dispatchEvent(ev)
                 })
             }
-            s.src = "./node_modules/monaco-editor/min/vs/loader.js"
+            s.src = "src/monaco/min/vs/loader.js"
             document.head.appendChild(s)
         }
     </script>
