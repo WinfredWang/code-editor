@@ -31,9 +31,13 @@ interface IEditor {
 
     onDestroy(): void;
     onChangeContent(onChange: () => void): void;
+
+    registerCompletion(completionProvider: CompletionProvider): void;
 }
 
 interface CompletionProvider {
+    language: string;
+
     provideCompletionItems: (model: monaco.editor.IModel, position: monaco.IPosition) => monaco.languages.CompletionItem[];
 }
 
@@ -124,6 +128,11 @@ class Editor implements IEditor {
         }
 
         this.editor.dispose();
+    }
 
+    registerCompletion(completionProvider: CompletionProvider): void {
+        monaco.languages.registerCompletionItemProvider(completionProvider.language, {
+            provideCompletionItems: completionProvider.provideCompletionItems
+        });
     }
 }
