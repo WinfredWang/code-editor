@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+</head>
+
+<body>
+
+    <div id="container" style="width:800px;height:600px;border:1px solid grey"></div>
+
+    <script src="src/monaco/min/vs/loader.js"></script>
+    <script>
+        require.config({ paths: { 'vs': 'src/monaco/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+                noSemanticValidation: true,
+                noSyntaxValidation: false
+            });
+
+            // compiler options
+            monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
+                target: monaco.languages.typescript.ScriptTarget.ES6,
+                allowNonTsExtensions: true
+            });
+
+            // extra libraries
+            window.lib = monaco.languages.typescript.typescriptDefaults.addExtraLib([
+                'declare class Facts {',
+                '    /**',
+                '     * Returns the next fact',
+                '     */',
+                '    static next():string',
+                '}',
+            ].join('\n'), 'filename/facts.d.ts');
+
+            var jsCode = [
+                '"use strict";',
+                '',
+                "class Chuck {",
+                "    greet() {",
+                "        return Facts.next();",
+                "    }",
+                "}"
+            ].join('\n');
+
+            monaco.editor.create(document.getElementById("container"), {
+                value: jsCode,
+                language: "typescript"
+            });
+        });
+
+    </script>
+</body>
+
+</html>
