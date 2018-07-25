@@ -9,11 +9,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "monaco-editor": "^0.8.3",
-    "ts-loader": "^2.1.0",
-    "typescript": "^2.3.4",
-    "vue": "^2.3.4",
-    "webpack": "^2.6.1"
+    "@types/core-js": "^0.9.46",
+    "ts-loader": "^4.2.0",
+    "webpack": "^4.5.0"
   },
   "dependencies": {
     "express": "^4.15.3"
